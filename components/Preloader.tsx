@@ -46,7 +46,10 @@ export function Preloader() {
         document.fonts?.ready ?? Promise.resolve(),
       ]);
       setReady(true);
-      window.setTimeout(() => setHidden(true), 300);
+      window.setTimeout(() => {
+        window.dispatchEvent(new Event("project-ready"));
+        setHidden(true);
+      }, 300);
       document.body.style.overflow = previousOverflow;
     };
 

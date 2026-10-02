@@ -30,6 +30,42 @@ html {
   scroll-behavior: smooth;
 }
 
+@keyframes hero-fade-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes hero-fade-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.hero-fade-in-left,
+.hero-fade-in-right {
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+.hero-fade-in-left.is-visible {
+  animation: hero-fade-in-left 800ms ease-out both;
+}
+
+.hero-fade-in-right.is-visible {
+  animation: hero-fade-in-right 800ms 120ms ease-out both;
+}
+
 body {
   margin: 0;
   background:
@@ -215,6 +251,14 @@ p {
 .frosted {
   background: rgba(31, 21, 12, 0.7);
   border: 1px solid rgba(225, 220, 201, 0.2);
+}
+
+.glass-card {
+  border: 1px solid rgba(225, 220, 201, 0.24);
+  background: rgba(65, 45, 21, 0.38);
+  backdrop-filter: blur(18px) saturate(125%);
+  -webkit-backdrop-filter: blur(18px) saturate(125%);
+  box-shadow: inset 0 1px 0 rgba(225, 220, 201, 0.12), 0 18px 40px rgba(0, 0, 0, 0.24);
 }
 
 .hide-scrollbar::-webkit-scrollbar {

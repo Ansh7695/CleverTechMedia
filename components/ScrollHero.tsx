@@ -24,7 +24,6 @@ export function ScrollHero({
 }: ScrollHeroProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
   const hintRef = useRef<HTMLDivElement>(null);
   const frameRef = useRef<number | null>(null);
   const targetProgressRef = useRef(0);
@@ -36,6 +35,7 @@ export function ScrollHero({
     const section = sectionRef.current;
     const video = videoRef.current;
     if (!section || !video) return;
+    const fadeElements = Array.from(section.querySelectorAll<HTMLElement>("[data-hero-fade]"));
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -60,7 +60,6 @@ export function ScrollHero({
       const next = current + (target - current) * clamp(smoothing, 0.01, 1);
       currentProgressRef.current = next;
 
-      if (contentRef.current) contentRef.current.style.opacity = String(1 - next * 0.45);
       if (hintRef.current) hintRef.current.style.opacity = String(Math.max(0, 1 - next * 4));
 
       syncVideo(next);
@@ -85,10 +84,15 @@ export function ScrollHero({
       }
     };
 
+    const startFadeIn = () => {
+      fadeElements.forEach((element) => element.classList.add("is-visible"));
+    };
+
     updateTargetProgress();
     video.addEventListener("loadedmetadata", handleMetadata);
     video.addEventListener("loadeddata", unlockSeeking, { once: true });
     window.addEventListener("touchstart", unlockSeeking, { passive: true, once: true });
+    window.addEventListener("project-ready", startFadeIn);
     window.addEventListener("scroll", updateTargetProgress, { passive: true });
     if (video.readyState >= HTMLMediaElement.HAVE_METADATA) handleMetadata();
     frameRef.current = window.requestAnimationFrame(animate);
@@ -97,6 +101,7 @@ export function ScrollHero({
       video.removeEventListener("loadedmetadata", handleMetadata);
       video.removeEventListener("loadeddata", unlockSeeking);
       window.removeEventListener("touchstart", unlockSeeking);
+      window.removeEventListener("project-ready", startFadeIn);
       window.removeEventListener("scroll", updateTargetProgress);
       if (frameRef.current !== null) window.cancelAnimationFrame(frameRef.current);
     };
@@ -109,7 +114,7 @@ export function ScrollHero({
       aria-label="Clevertechmedia influencer marketplace introduction"
       className="relative"
     >
-      <div className="sticky top-[76px] z-10 h-[calc(100vh-76px)] overflow-hidden bg-black md:top-[73px] md:h-[calc(100vh-73px)]">
+      <div className="sticky top-[61px] z-10 h-[calc(100vh-61px)] overflow-hidden bg-black">
         <video
           ref={videoRef}
           src={src}
@@ -122,8 +127,8 @@ export function ScrollHero({
           style={{ objectPosition }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/20" />
-        <div className="absolute inset-0 flex items-start justify-start px-6 pt-20 md:px-12 md:pt-28">
-          <div ref={contentRef} className="w-full max-w-3xl">
+        <div className="absolute inset-0 flex items-start justify-start px-6 pt-20 md:px-[1cm] md:pt-28">
+          <div className="w-full max-w-none">
             {children}
           </div>
         </div>

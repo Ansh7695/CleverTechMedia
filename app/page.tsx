@@ -67,13 +67,6 @@ const trendingInfluencers: InfluencerItem[] = [
   },
 ];
 
-const categoryTiles = [
-  { name: "Fashion", image: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80" },
-  { name: "Fitness", image: "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=900&q=80" },
-  { name: "Beauty", image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=80" },
-  { name: "Travel", image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80" },
-];
-
 const avatarRow = [
   "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80",
   "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80",
@@ -132,6 +125,49 @@ const directoryInfluencers: InfluencerItem[] = [
     rating: 4.9,
   },
 ];
+
+const homepageInfluencers: InfluencerItem[] = [
+  ...directoryInfluencers,
+  {
+    name: "Ava Stone",
+    category: "Travel & Lifestyle",
+    niche: "Destination stories",
+    rate: "$1.9K/collab",
+    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=80",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+    rating: 4.8,
+  },
+  {
+    name: "Maya Reed",
+    category: "Beauty & Skincare",
+    niche: "Editorial beauty",
+    rate: "$2.1K/collab",
+    image: "https://images.unsplash.com/photo-1512316609839-ce289d3eba0a?auto=format&fit=crop&w=900&q=80",
+    avatar: "https://images.unsplash.com/photo-1512316609839-ce289d3eba0a?auto=format&fit=crop&w=200&q=80",
+    rating: 4.9,
+  },
+  {
+    name: "Eli Carter",
+    category: "Fitness & Wellness",
+    niche: "Wellness routines",
+    rate: "$1.7K/collab",
+    image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=900&q=80",
+    avatar: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=200&q=80",
+    rating: 4.8,
+  },
+  {
+    name: "Sofia Lane",
+    category: "Fashion & Lifestyle",
+    niche: "Modern wardrobe",
+    rate: "$2.6K/collab",
+    image: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=900&q=80",
+    avatar: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=200&q=80",
+    rating: 5,
+  },
+].map((item, index) => ({
+  ...item,
+  followers: ["128K", "94K", "216K", "76K", "182K", "143K", "109K", "267K", "88K", "321K", "156K", "204K"][index],
+}));
 
 const articles = [
   {
@@ -200,66 +236,76 @@ export default function Home() {
     <div className="min-h-screen bg-[var(--bg)] text-[var(--text-primary)]">
       <main>
         <ScrollHero>
-          <div className="max-w-2xl">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[rgba(225,220,201,0.35)] bg-[rgba(65,45,21,0.7)] px-4 py-2 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-[var(--text-primary)]">
-              <Sparkles className="h-3.5 w-3.5" />
-              Trusted by 500+ brands
+          <div className="grid w-full items-start gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+            <div data-hero-fade className="hero-fade-in-left max-w-2xl">
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[rgba(225,220,201,0.35)] bg-[rgba(65,45,21,0.7)] px-4 py-2 text-[0.65rem] font-bold uppercase tracking-[0.2em] text-[var(--text-primary)]">
+                <Sparkles className="h-3.5 w-3.5" />
+                Trusted by 500+ brands
+              </div>
+              <h1 className="text-5xl leading-[0.92] text-[var(--text-primary)] md:text-7xl">
+                Where great brands meet great<br /><span className="gold-text">Influencers</span>
+              </h1>
             </div>
-            <h1 className="text-5xl leading-[0.92] text-[var(--text-primary)] md:text-7xl">
-              Where great brands meet great <span className="gold-text">Influencers</span>
-            </h1>
-            <p className="mt-6 max-w-lg text-lg leading-8 text-[var(--text-primary)]">
-              Discover vetted creators, launch premium campaigns, and build a high-trust partnership network designed for ambitious brands.
-            </p>
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <a href="/influencers" className="gold-btn">Explore Influencers</a>
-              <button onClick={() => setProjectOpen(true)} className="gold-outline">Post a Project</button>
+            <div data-hero-fade className="hero-fade-in-right max-w-lg lg:justify-self-end lg:pt-24 lg:text-right">
+              <p className="text-lg leading-8 text-[var(--text-primary)]">
+                Discover vetted creators, launch premium campaigns, and build a high-trust partnership network designed for ambitious brands.
+              </p>
+              <div className="mt-8 flex flex-col gap-4 sm:flex-row lg:justify-end">
+                <a href="/influencers" className="gold-btn">Explore Influencers</a>
+                <button onClick={() => setProjectOpen(true)} className="gold-outline">Post a Project</button>
+              </div>
             </div>
           </div>
         </ScrollHero>
 
-        <motion.section initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} variants={fadeUp} transition={{ duration: 0.6 }} className="section-shell pb-24 md:pb-32">
-          <div className="mb-8 flex items-end justify-between gap-4">
-            <div>
-              <SectionEyebrow>Featured this week</SectionEyebrow>
-              <div className="mt-4">
-                <SectionHeading title="Trending Influencers" highlight="Influencers" />
-              </div>
+        <motion.section
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.16 }}
+          variants={fadeUp}
+          transition={{ duration: 0.8 }}
+          className="relative z-20 h-[820px] overflow-hidden md:h-[780px]"
+        >
+          <div className="section-shell grid h-full items-center gap-6 md:grid-cols-[0.9fr_1.1fr] md:gap-12">
+            <div className="relative z-10 max-w-xl self-center text-left">
+              <SectionEyebrow>About Clevertechmedia</SectionEyebrow>
+              <h2 className="mt-5 text-4xl leading-tight text-white md:text-6xl">
+                The people behind <span className="gold-text">influence</span>
+              </h2>
+              <p className="mt-6 max-w-lg text-lg leading-8 text-[var(--text-body)]">
+                Clevertechmedia connects ambitious brands with creators who make attention feel personal. Our network brings strategy, culture, and standout talent together in one trusted place.
+              </p>
+              <a href="/brands" className="gold-btn mt-8">Discover our story</a>
             </div>
-            <a href="/influencers" className="hidden items-center gap-2 text-[0.7rem] font-bold uppercase tracking-[0.16em] text-[var(--gold-light)] md:inline-flex">
-              View more <ArrowRight className="h-4 w-4" />
-            </a>
-          </div>
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {trendingInfluencers.map((item) => (
-              <InfluencerCard key={item.name} item={item} />
-            ))}
+            <div className="relative h-full" style={{ perspective: "1200px" }}>
+              <motion.div
+                initial={{ opacity: 0, y: -180, rotateY: -18, rotateZ: 3, scale: 0.78 }}
+                whileInView={{ opacity: 1, y: 0, rotateY: 0, rotateZ: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute bottom-0 right-0 h-[90%] w-full origin-bottom md:w-[68%]"
+              >
+                <img src="/Assets/aboutimg.png" alt="Clevertechmedia creator" className="h-full w-full origin-bottom scale-110 object-contain object-bottom drop-shadow-[0_38px_38px_rgba(0,0,0,0.5)] md:scale-125" />
+              </motion.div>
+            </div>
           </div>
         </motion.section>
 
-        <motion.section initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} variants={fadeUp} transition={{ duration: 0.6 }} className="pb-24 md:pb-32">
-          <div className="section-shell">
-            <div className="mb-8 flex items-center justify-between gap-4">
-              <div>
-                <SectionEyebrow>Trending categories</SectionEyebrow>
-                <div className="mt-4">
-                  <SectionHeading title="Discover Talent" highlight="Talent" />
-                </div>
-              </div>
+        <motion.section initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.16 }} variants={fadeUp} transition={{ duration: 0.7 }} className="section-shell pb-24 md:pb-32">
+          <div className="mb-8">
+            <SectionEyebrow>Creator network</SectionEyebrow>
+            <div className="mt-4 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+              <SectionHeading title="Meet the influencers" highlight="influencers" />
+              <p className="max-w-md text-sm leading-7 text-[var(--text-body)] md:text-right">Find the right voice for your next campaign, from emerging talent to established creators.</p>
             </div>
           </div>
-          <div className="section-shell grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-            {categoryTiles.map((tile) => (
-              <div key={tile.name} className="duotone-card group relative min-h-[300px] overflow-hidden border border-[rgba(212,175,55,0.18)]">
-                <img src={tile.image} alt={tile.name} className="absolute inset-0 h-full w-full object-cover grayscale-[0.2] contrast-110" />
-                <div className="flex h-full min-h-[300px] flex-col items-center justify-center text-center">
-                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full border border-[rgba(212,175,55,0.6)] bg-[rgba(16,12,9,0.38)] text-[var(--gold-light)] backdrop-blur-sm">
-                    <Sparkles className="h-5 w-5" />
-                  </div>
-                  <div className="text-3xl font-[var(--font-display)] text-white">{tile.name}</div>
-                </div>
-              </div>
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {homepageInfluencers.map((item) => (
+              <InfluencerCard key={item.name} item={item} />
             ))}
+          </div>
+          <div className="mt-10 flex justify-center">
+            <a href="/influencers" className="gold-outline">Show More Influencers</a>
           </div>
         </motion.section>
 

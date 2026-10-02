@@ -11,6 +11,7 @@ export type InfluencerItem = {
   image: string;
   avatar: string;
   rating: number;
+  followers?: string;
   verified?: boolean;
 };
 
@@ -19,15 +20,12 @@ export function InfluencerCard({ item, compact = false }: { item: InfluencerItem
     <motion.article
       whileHover={{ y: -6 }}
       transition={{ type: "spring", stiffness: 180, damping: 16 }}
-      className="group overflow-hidden border border-[var(--border)] bg-[rgba(20,18,16,0.9)] shadow-[0_18px_40px_rgba(0,0,0,0.12)] transition-shadow duration-300 hover:shadow-[0_20px_40px_-10px_rgba(212,175,55,0.25)]"
+      className="glass-card group overflow-hidden shadow-[0_18px_40px_rgba(0,0,0,0.12)] transition-shadow duration-300 hover:shadow-[0_20px_40px_-10px_rgba(212,175,55,0.25)]"
     >
       <div className="relative overflow-hidden">
         <img src={item.image} alt={item.name} className="aspect-[4/5] w-full object-cover transition duration-[400ms] ease-out group-hover:scale-[1.12]" />
         <div className="absolute left-3 top-3 flex h-7 w-7 items-center justify-center rounded-full bg-[linear-gradient(135deg,#f2d879_0%,#d4af37_45%,#9c7a22_100%)] text-[10px] text-[#120f0b] shadow-lg shadow-[rgba(212,175,55,0.22)] transition-transform duration-300 group-hover:scale-110 group-hover:ring-4 group-hover:ring-[rgba(212,175,55,0.18)]">
           <Check className="h-3.5 w-3.5" />
-        </div>
-        <div className="absolute -bottom-5 left-4 h-12 w-12 overflow-hidden rounded-full border-2 border-[var(--bg)] bg-[#1c160f] shadow-lg shadow-black/30 transition-transform duration-300 group-hover:scale-110 group-hover:border-[var(--gold)]">
-          <img src={item.avatar} alt={item.name} className="h-full w-full object-cover" />
         </div>
       </div>
 
@@ -49,6 +47,13 @@ export function InfluencerCard({ item, compact = false }: { item: InfluencerItem
           <span className="text-[var(--text-body)]">{item.niche}</span>
           <span className="font-semibold text-[var(--gold-light)]">{item.rate}</span>
         </div>
+
+        {item.followers && (
+          <div className="flex items-center justify-between text-[0.7rem] uppercase tracking-[0.12em]">
+            <span className="text-[var(--text-muted)]">Followers</span>
+            <span className="font-semibold text-[var(--text-primary)]">{item.followers}</span>
+          </div>
+        )}
 
         {!compact && (
           <button className="gold-btn w-full !py-3.5 !px-4 !text-[0.68rem] !tracking-[0.16em]">

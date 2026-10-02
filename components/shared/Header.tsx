@@ -18,9 +18,9 @@ export function Header() {
   return (
     <>
       <header className="sticky top-0 z-50 border-b border-[rgba(212,175,55,0.2)] bg-[rgba(10,9,6,0.82)] backdrop-blur-md">
-        <div className="section-shell flex items-center justify-between gap-4 py-4">
+        <div className="section-shell flex items-center justify-between gap-4 py-3">
           <a href="/" className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[rgba(212,175,55,0.6)] bg-[linear-gradient(135deg,#f2d879_0%,#d4af37_45%,#9c7a22_100%)] font-[var(--font-display)] text-sm font-bold text-[#120f09]">
+            <div className="flex h-9 w-9 items-center justify-center rounded-full border border-[rgba(212,175,55,0.6)] bg-[linear-gradient(135deg,#f2d879_0%,#d4af37_45%,#9c7a22_100%)] font-[var(--font-display)] text-sm font-bold text-[#120f09]">
               CTM
             </div>
             <div className="font-[var(--font-display)] text-xl font-bold tracking-[-0.04em] text-white">
@@ -37,16 +37,16 @@ export function Header() {
           </nav>
 
           <div className="hidden items-center gap-3 md:flex">
-            <div className="flex items-center gap-2 border border-[rgba(212,175,55,0.2)] px-3 py-2 text-[0.68rem] uppercase tracking-[0.14em] text-[var(--text-muted)]">
+            <div className="flex items-center gap-2 border border-[rgba(212,175,55,0.2)] px-3 py-1.5 text-[0.68rem] uppercase tracking-[0.14em] text-[var(--text-muted)]">
               <Phone className="h-4 w-4 text-[var(--gold-light)]" />
               Talk to us
             </div>
-            <a href="/contact" className="gold-btn !py-3 !px-6 !text-[0.65rem] !tracking-[0.14em]">
+            <a href="/contact" className="gold-btn !py-2 !px-6 !text-[0.65rem] !tracking-[0.14em]">
               Join as Influencer
             </a>
           </div>
 
-          <button onClick={() => setMobileOpen(true)} className="flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(212,175,55,0.3)] text-[var(--gold-light)] lg:hidden">
+          <button onClick={() => setMobileOpen(true)} className="flex h-10 w-10 items-center justify-center rounded-full border border-[rgba(212,175,55,0.3)] text-[var(--gold-light)] lg:hidden">
             <Menu className="h-5 w-5" />
           </button>
         </div>
